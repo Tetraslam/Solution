@@ -1,0 +1,81 @@
+<!--index.html-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/jquery.terminal/js/jquery.terminal.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/jquery.terminal/css/jquery.terminal.min.css"/>
+<link rel="stylesheet" href="style.css"/>
+<script src="main.js"></script>
+<title>NiranjanUx</title>
+  </head>
+  <body id="body">
+    
+    <script>
+      $('body').terminal({
+          hello: function(what) {
+              this.echo('Hello, ' + what +
+                        '. Welcome to this terminal.');
+          },
+
+        cat: function(width, height) {
+        const img = $('<img src="https://placekitten.com/' +
+                      width + '/' + height + '">');
+        this.echo(img);
+          },
+          
+        
+        penguin: function(name) {
+          this.echo('Hello comrade ' + name + '!');
+        },
+      
+        fish: function() {
+          this.echo('An introduction to fishlang: the terminal lang for penguins of all shapes and sizes!');
+          this.echo('Useful commands to know:');
+          this.echo('fishfind - find the nearest fish by your coordinates!');
+          this.echo('cat [width] [height] - find your daily dose of cat cuteness');
+          this.echo('hello [what] - say hello to anything in the world!');
+          this.echo('penguin [name] - introduce yourself to the terminal. the terminal loves penguins.');
+        },
+      
+        fishfind: function() {
+          
+          var minNumber = -100;
+          var maxNumber = 100;
+
+          var randomNorthNumber = randomNumberFromRange(minNumber, maxNumber);
+          var randomEastNumber = randomNumberFromRange(minNumber, maxNumber);
+
+          function randomNumberFromRange(min,max) {
+            {
+            return Math.floor(Math.random()*(max-min+1)+min);
+          };
+          
+      }
+      this.echo('The nearest fish is ' + randomNorthNumber + ' metres North and ' + randomEastNumber + ' metres East.');
+    },
+        
+      
+      },
+      
+      {
+          greetings: 'NiranjanUx Terminal (type in fish to get a small guide to fishlang!)'
+      });
+
+      $.terminal.new_formatter([/hello/g, '[[;pink;]hello]']);
+      
+      $.terminal.new_formatter([/cat/g, '[[;cyan;]cat]']);
+      $.terminal.new_formatter([/fish/g, '[[;magenta;]fish]']);
+      $.terminal.new_formatter([/penguin/g, '[[;yellow;]penguin]']);
+      $.terminal.new_formatter([/scroll/g, '[[;black;]scroll]']);
+
+      
+      </script>
+    
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>
